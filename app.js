@@ -168,6 +168,7 @@ function drawChart(curWeek, weeks) {
     label: 'Target', data: weeks.map((p) => p[targetKey]), borderColor: '#1B1A17', borderWidth: 1.5,
     borderDash: [5, 4], pointRadius: 0, stepped: 'middle', fill: false, order: 10,
   }];
+  // Grey band from the weekly target up to the stretch (Mileage max) — weekly km view only.
   if (metric === 'total') datasets.push({
     label: 'Stretch', data: weeks.map((p) => p.km_max), borderColor: 'transparent', backgroundColor: 'rgba(27,26,23,0.06)',
     pointRadius: 0, stepped: 'middle', fill: '-1', order: 11,
@@ -205,6 +206,7 @@ function drawChart(curWeek, weeks) {
   else chart = new Chart(ctx, { type: 'line', data: { labels, datasets }, options });
 
   $('legend').innerHTML = `<span><i class="dash"></i>Target</span>` +
+    (metric === 'total' ? `<span><i class="band"></i>Stretch range</span>` : '') +
     RUNNERS.map((r) => `<span><i style="background:${r.color}"></i>${r.name}</span>`).join('');
 }
 
