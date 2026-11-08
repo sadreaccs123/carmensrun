@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sad Reaccs admin</title>
+  <meta name="theme-color" content="#F4EFE6">
+  <meta name="robots" content="noindex">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <main class="app">
+    <header class="top">
+      <div class="brand">ADMIN</div>
+      <a class="back" href="./">← Back to app</a>
+    </header>
+
+    <section class="card" id="lock">
+      <div class="lbl">Enter admin code</div>
+      <form id="pin-form" class="log" novalidate>
+        <input class="pin-input" id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="••••" style="grid-column:1/-1">
+        <button class="btn-primary" type="submit">UNLOCK</button>
+      </form>
+      <div class="err" id="pin-err" role="alert"></div>
+    </section>
+
+    <section id="editor" hidden>
+      <p class="muted" style="margin:12px 2px 0">Edit any target, then tap Save. Changes show for everyone straight away. Target km = the number each runner's progress is measured against; stretch = the upper end.</p>
+      <div class="card" id="weeks"></div>
+      <div class="save-bar"><button class="btn-primary" id="save" type="button" style="width:100%">SAVE CHANGES</button></div>
+      <div class="err" id="save-err" role="alert"></div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

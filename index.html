@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sad Reaccs</title>
+  <meta name="description" content="Sad Reaccs 10k training tracker">
+  <meta name="theme-color" content="#F4EFE6">
+  <!-- iPhone "Add to Home Screen" settings -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sad Reaccs">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="brand">SAD REACCS</div>
+      <div class="countdown" id="countdown"></div>
+    </header>
+
+    <div class="demo-banner" id="demo-banner" hidden>Demo mode: runs are saved on this device only.</div>
+
+    <!-- Who are you? -->
+    <nav class="who" id="who" aria-label="Choose runner"></nav>
+
+    <!-- First-visit picker -->
+    <section class="card picker" id="picker" hidden>
+      <div class="lbl">Who's running?</div>
+      <p>Pick your name. This phone will remember it.</p>
+      <div class="picker-grid" id="picker-grid"></div>
+    </section>
+
+    <div id="me-section">
+      <!-- Reacc banner -->
+      <div class="reacc-banner" id="reacc-banner" hidden></div>
+
+      <!-- Next run -->
+      <section class="card bib" id="next">
+        <span class="pin tl"></span><span class="pin tr"></span><span class="pin bl"></span><span class="pin br"></span>
+        <div class="row"><span class="lbl" id="next-title">Next run</span><span class="lbl" id="next-week"></span></div>
+        <div class="big" id="next-km"></div>
+        <div class="note" id="next-note"></div>
+      </section>
+
+      <!-- This week -->
+      <section class="card">
+        <div class="row"><span class="lbl">This week</span><span id="wk-total"></span></div>
+        <div class="bar"><i id="wk-total-bar"></i><b id="wk-stretch-mark" title="Stretch"></b></div>
+        <div class="row mt"><span class="lbl">Long run</span><span id="wk-long"></span></div>
+        <div class="bar"><i id="wk-long-bar" class="ink"></i></div>
+        <div class="muted mt" id="wk-runs"></div>
+      </section>
+
+      <!-- Log a run -->
+      <section class="card">
+        <div class="lbl">Log a run</div>
+        <form id="log-form" class="log" novalidate>
+          <label class="field km-field">
+            <input id="log-km" type="number" inputmode="decimal" step="0.01" min="0.1" max="60" placeholder="2.5" aria-label="Distance in km">
+            <span>km</span>
+          </label>
+          <label class="field date-field">
+            <input id="log-date" type="date" aria-label="Date of run">
+          </label>
+          <button type="submit" class="btn-primary" id="log-btn">LOG IT</button>
+        </form>
+        <div class="err" id="log-err" role="alert"></div>
+      </section>
+    </div>
+
+    <!-- Squad -->
+    <section class="card">
+      <div class="row"><span class="h2">THE SQUAD</span><span class="lbl" id="squad-week"></span></div>
+      <div id="squad"></div>
+    </section>
+
+    <!-- Chart -->
+    <section class="card">
+      <div class="row">
+        <span class="lbl">Progress vs target</span>
+        <div class="seg" role="tablist">
+          <button type="button" data-metric="total" class="on">Weekly km</button>
+          <button type="button" data-metric="longest">Long run</button>
+        </div>
+      </div>
+      <div class="chart-wrap"><canvas id="chart" aria-label="Weekly progress chart"></canvas></div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <!-- Plan -->
+    <section class="card">
+      <div class="lbl">The plan</div>
+      <div class="strip" id="strip"></div>
+      <div class="strip-phases"><span>Learn</span><span>Build</span><span>Peak</span><span>Race</span></div>
+      <div class="week-detail" id="week-detail"></div>
+    </section>
+
+    <!-- History -->
+    <section class="card" id="history-card">
+      <div class="lbl" id="history-title">Your runs</div>
+      <ul class="history" id="history"></ul>
+    </section>
+
+    <footer class="foot">
+      <a href="admin.html">Admin</a>
+      <span>·</span>
+      <span id="foot-me"></span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
